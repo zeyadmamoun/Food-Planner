@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">FoodiesApp</string>
+    <string name="hello_login_fragment">Hello login fragment</string>
+    <string name="hello_registration_fragment">Hello registration fragment</string>
+</resources>

@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "233676061242",
+    "project_id": "foodies-planner",
+    "storage_bucket": "foodies-planner.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:233676061242:android:7e4d967c2966777ec9d303",
+        "android_client_info": {
+          "package_name": "com.example.foodiesapp"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBhFWwXjejdZjvxtK0JJRmfRB0G6imSk_Y"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
