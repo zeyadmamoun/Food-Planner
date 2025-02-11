@@ -12,7 +12,20 @@
           "package_name": "com.example.foodiesapp"
         }
       },
-      "oauth_client": [],
+      "oauth_client": [
+        {
+          "client_id": "233676061242-ac2bf8skggflsm4os0sv5kf8eiih3tsa.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.foodiesapp",
+            "certificate_hash": "8149debb690cb11f7ff7eb5894af308f57b626a7"
+          }
+        },
+        {
+          "client_id": "233676061242-cqdvkub1fj5n0ein5ugjfe6k000jrh3t.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
       "api_key": [
         {
           "current_key": "AIzaSyBhFWwXjejdZjvxtK0JJRmfRB0G6imSk_Y"
@@ -20,7 +33,12 @@
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": []
+          "other_platform_oauth_client": [
+            {
+              "client_id": "233676061242-cqdvkub1fj5n0ein5ugjfe6k000jrh3t.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
         }
       }
     }

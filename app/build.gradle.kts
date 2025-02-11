@@ -39,13 +39,21 @@ android {
 }
 
 dependencies {
-
-    // Views/Fragments integration
+    // Views-Fragments integration
     implementation(libs.navigation.fragment)
     implementation(libs.androidx.navigation.ui)
 
+    // splash screen
+    implementation(libs.androidx.core.splashscreen)
+    // lottie animation
+    implementation(libs.android.lottie)
+
     // Import the Firebase BoM
     implementation(platform(libs.firebase.bom))
+    // firebase authentication library
+    implementation(libs.firebase.auth)
+    // firebase pre-built UI
+    implementation(libs.firebaseui.firebase.ui.auth)
 
     implementation(libs.appcompat)
     implementation(libs.material)
