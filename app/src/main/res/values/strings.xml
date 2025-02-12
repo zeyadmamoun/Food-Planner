@@ -23,4 +23,11 @@
     <string name="sign_up_btn_label">Sign Up</string>
     <string name="i_already_have_an_account">I already have an account</string>
     <string name="continue_as_guest">continue as guest</string>
+    <string name="welcome">Welcome</string>
+    <string name="plan_your_meal_here">plan your meal here</string>
+    <string name="meal_time">50min</string>
+    <string name="add_to_your_plan">Add to your plan</string>
+    <string name="meal_name">Ina Garten\'s Mustard-Roasted Chicken</string>
+    <string name="meal_image">meal image</string>
+    <string name="favorite_icon">favorite icon</string>
 </resources>

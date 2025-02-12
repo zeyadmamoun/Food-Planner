@@ -55,6 +55,11 @@ dependencies {
     // firebase pre-built UI
     implementation(libs.firebaseui.firebase.ui.auth)
 
+    // Retrofit
+    implementation (libs.retrofit)
+    // Gson Converter
+    implementation("com.squareup.retrofit2:converter-gson:2.11.0")
+
     implementation(libs.appcompat)
     implementation(libs.material)
     implementation(libs.activity)
