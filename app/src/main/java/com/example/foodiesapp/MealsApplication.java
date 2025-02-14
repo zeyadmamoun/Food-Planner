@@ -2,7 +2,7 @@ package com.example.foodiesapp;
 
 import android.app.Application;
 
-import com.example.foodiesapp.repositories.AppContainer;
+import com.example.foodiesapp.model.AppContainer;
 
 public class MealsApplication extends Application {
     private AppContainer container;

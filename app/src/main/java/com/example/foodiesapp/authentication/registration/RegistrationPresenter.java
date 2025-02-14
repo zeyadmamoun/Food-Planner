@@ -1,4 +1,4 @@
-package com.example.foodiesapp.ui.registration;
+package com.example.foodiesapp.authentication.registration;
 
 import android.util.Log;
 

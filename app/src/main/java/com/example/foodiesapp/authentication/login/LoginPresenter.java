@@ -1,4 +1,4 @@
-package com.example.foodiesapp.ui.login;
+package com.example.foodiesapp.authentication.login;
 
 import static android.app.Activity.RESULT_OK;
 

@@ -4,7 +4,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.registration.RegistrationFragment">
+    tools:context=".authentication.registration.RegistrationFragment">
 
     <TextView
         android:id="@+id/sign_up_tv"

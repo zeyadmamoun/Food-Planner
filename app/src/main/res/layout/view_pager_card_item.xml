@@ -2,8 +2,9 @@
 <com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/meal_card"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="match_parent"
     android:layout_margin="8dp"
     app:cardCornerRadius="12dp"
     app:cardElevation="4dp">
@@ -23,27 +24,30 @@
                 android:layout_height="250dp"
                 android:contentDescription="@string/meal_image"
                 android:scaleType="centerCrop"
-                tools:src="@drawable/facebook"/>
+                tools:src="@drawable/facebook" />
 
             <TextView
+                android:id="@+id/card_category_tv"
                 style="@style/title_text_view"
-                android:textSize="12sp"
-                android:id="@+id/cookingTime"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="start|top"
-                android:layout_margin="16dp"
-                android:padding="8dp"
+                android:layout_margin="10dp"
+                android:paddingHorizontal="12dp"
+                android:paddingVertical="6dp"
+                android:background="@drawable/category_label_background"
+                android:text="@string/meal_time"
                 android:textColor="@android:color/white"
-                android:text="@string/meal_time" />
+                android:textSize="14sp" />
 
             <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:contentDescription="@string/favorite_icon"
-                android:src="@drawable/favorite_outlined_ic"
+                android:id="@+id/favorite_icon"
+                android:layout_width="35sp"
+                android:layout_height="35dp"
                 android:layout_gravity="end|top"
-                android:layout_margin="16dp"/>
+                android:layout_margin="16dp"
+                android:contentDescription="@string/favorite_icon"
+                android:src="@drawable/favorite_outlined_ic" />
 
         </FrameLayout>
 
@@ -51,7 +55,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:padding="16dp">
+            android:weightSum="4"
+            android:paddingHorizontal="16dp">
 
             <TextView
                 android:id="@+id/recipeTitle_tv"
@@ -59,6 +64,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
+                android:maxLines="2"
                 android:text="@string/meal_name"
                 android:textSize="20sp"
                 android:textStyle="bold" />
@@ -76,10 +82,11 @@
                 android:id="@+id/addIngredientsButton"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
+                android:layout_marginTop="8dp"
+                android:layout_gravity="bottom"
+                android:background="@drawable/button_background"
                 android:text="@string/add_to_your_plan"
-                android:background="@drawable/swipe_card_button_background"
-                app:icon="@drawable/baseline_password_24" />
+                app:icon="@drawable/calendar_ic" />
 
         </LinearLayout>
 

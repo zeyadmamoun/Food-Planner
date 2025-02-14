@@ -43,6 +43,9 @@ dependencies {
     implementation(libs.navigation.fragment)
     implementation(libs.androidx.navigation.ui)
 
+    // viewpager2
+    implementation(libs.androidx.viewpager2)
+
     // splash screen
     implementation(libs.androidx.core.splashscreen)
     // lottie animation
@@ -58,7 +61,9 @@ dependencies {
     // Retrofit
     implementation (libs.retrofit)
     // Gson Converter
-    implementation("com.squareup.retrofit2:converter-gson:2.11.0")
+    implementation(libs.converter.gson)
+    //Glide
+    implementation (libs.github.glide)
 
     implementation(libs.appcompat)
     implementation(libs.material)

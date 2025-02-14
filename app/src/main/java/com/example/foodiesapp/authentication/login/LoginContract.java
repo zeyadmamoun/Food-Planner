@@ -1,4 +1,4 @@
-package com.example.foodiesapp.ui.login;
+package com.example.foodiesapp.authentication.login;
 
 public interface LoginContract {
     void navigateToHomeScreen();
