@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_margin="8dp"
-    app:cardCornerRadius="12dp"
+    app:cardCornerRadius="16dp"
     app:cardElevation="4dp">
 
     <LinearLayout
@@ -21,7 +21,7 @@
             <ImageView
                 android:id="@+id/recipeImage"
                 android:layout_width="match_parent"
-                android:layout_height="250dp"
+                android:layout_height="270dp"
                 android:contentDescription="@string/meal_image"
                 android:scaleType="centerCrop"
                 tools:src="@drawable/facebook" />
@@ -33,12 +33,12 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="start|top"
                 android:layout_margin="10dp"
-                android:paddingHorizontal="12dp"
-                android:paddingVertical="6dp"
                 android:background="@drawable/category_label_background"
+                android:paddingHorizontal="10dp"
+                android:paddingVertical="4dp"
                 android:text="@string/meal_time"
-                android:textColor="@android:color/white"
-                android:textSize="14sp" />
+                android:textColor="@color/tretiary"
+                android:textSize="12sp" />
 
             <ImageView
                 android:id="@+id/favorite_icon"
@@ -55,8 +55,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:weightSum="4"
-            android:paddingHorizontal="16dp">
+            android:paddingHorizontal="16dp"
+            android:weightSum="4">
 
             <TextView
                 android:id="@+id/recipeTitle_tv"
@@ -75,15 +75,16 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                android:text="Egypt"
+                android:text="@string/meal_origin"
                 android:textStyle="bold" />
 
             <Button
                 android:id="@+id/addIngredientsButton"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
                 android:layout_gravity="bottom"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp"
                 android:background="@drawable/button_background"
                 android:text="@string/add_to_your_plan"
                 app:icon="@drawable/calendar_ic" />

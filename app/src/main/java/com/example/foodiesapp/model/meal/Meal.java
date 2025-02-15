@@ -1,4 +1,4 @@
-package com.example.foodiesapp.model;
+package com.example.foodiesapp.model.meal;
 
 import androidx.annotation.NonNull;
 

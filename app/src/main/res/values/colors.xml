@@ -6,6 +6,7 @@
     <color name="secondary">#069a8e</color>
     <color name="tretiary">#333333</color>
     <color name="background">#f8fafb</color>
-    <color name="card_background">#f1fdda</color>
+    <color name="card_background">#e6e8ef</color>
+<!--    <color name="card_background">#f1fdda</color>-->
     <color name="text_button_color">#3f8582</color>
 </resources>

@@ -1,4 +1,4 @@
-package com.example.foodiesapp.home.view;
+package com.example.foodiesapp.home.view.adapters;
 
 import android.content.Context;
 import android.graphics.drawable.Drawable;
@@ -16,7 +16,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.example.foodiesapp.R;
-import com.example.foodiesapp.model.Meal;
+import com.example.foodiesapp.home.view.HomeContract;
+import com.example.foodiesapp.model.meal.Meal;
 
 import java.util.ArrayList;
 import java.util.List;

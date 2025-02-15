@@ -30,4 +30,15 @@
     <string name="meal_name">Ina Garten\'s Mustard-Roasted Chicken</string>
     <string name="meal_image">meal image</string>
     <string name="favorite_icon">favorite icon</string>
+    <string name="search">Search</string>
+    <string name="home">Home</string>
+    <string name="meal_plan">Meal plan</string>
+    <string name="profile">Profile</string>
+    <string name="recommendations">Recommendations</string>
+    <string name="meal_origin">Egypt</string>
+    <string name="meal_category">vegetarian</string>
+    <string name="category_image">category image</string>
+    <string name="category">Category</string>
+    <string name="ingredient">Ingredient</string>
+    <string name="country">Country</string>
 </resources>

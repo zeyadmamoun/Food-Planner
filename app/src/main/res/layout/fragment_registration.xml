@@ -10,6 +10,7 @@
         android:id="@+id/sign_up_tv"
         style="@style/title_text_view"
         android:text="@string/sign_up"
+        android:layout_marginTop="96dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />

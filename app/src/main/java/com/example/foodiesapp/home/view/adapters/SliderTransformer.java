@@ -1,4 +1,4 @@
-package com.example.foodiesapp.home.view;
+package com.example.foodiesapp.home.view.adapters;
 
 import android.view.View;
 

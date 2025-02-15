@@ -1,72 +1,78 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".home.view.HomeFragment">
+    android:layout_height="match_parent">
 
-    <Button
-        android:id="@+id/signout"
-        android:layout_width="wrap_content"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="16dp"
-        android:text="@string/sign_out"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        tools:context=".home.view.HomeFragment">
 
-    <TextView
-        android:id="@+id/username_tv"
-        style="@style/title_text_view"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:text="@string/welcome"
-        android:textSize="16sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        <TextView
+            android:id="@+id/username_tv"
+            style="@style/title_text_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:text="@string/welcome"
+            android:textSize="16sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/below_username_tv"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/plan_your_meal_here"
-        android:textSize="12sp"
-        app:layout_constraintStart_toStartOf="@+id/username_tv"
-        app:layout_constraintTop_toBottomOf="@+id/username_tv" />
+        <TextView
+            android:id="@+id/below_username_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/plan_your_meal_here"
+            android:textSize="12sp"
+            app:layout_constraintStart_toStartOf="@+id/username_tv"
+            app:layout_constraintTop_toBottomOf="@+id/username_tv" />
 
-    <TextView
-        android:id="@+id/meal_of_day_tv"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        style="@style/title_text_view"
-        android:text="Meals Of The Day"
-        app:layout_constraintStart_toStartOf="@id/below_username_tv"
-        app:layout_constraintTop_toBottomOf="@id/below_username_tv" />
+        <TextView
+            android:id="@+id/meal_of_day_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            style="@style/title_text_view"
+            android:text="Meals Of The Day"
+            app:layout_constraintStart_toStartOf="@id/below_username_tv"
+            app:layout_constraintTop_toBottomOf="@id/below_username_tv" />
 
-    <androidx.viewpager2.widget.ViewPager2
-        android:id="@+id/viewpager"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:paddingStart="10dp"
-        android:paddingEnd="70dp"
-        android:clipChildren="false"
-        android:clipToPadding="false"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/meal_of_day_tv"
-        app:layout_constraintBottom_toTopOf="@id/guideline">
-    </androidx.viewpager2.widget.ViewPager2>
+        <androidx.viewpager2.widget.ViewPager2
+            android:id="@+id/viewpager"
+            android:layout_width="0dp"
+            android:layout_height="450dp"
+            android:paddingStart="10dp"
+            android:paddingEnd="40dp"
+            android:clipChildren="false"
+            android:clipToPadding="false"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/meal_of_day_tv">
+        </androidx.viewpager2.widget.ViewPager2>
 
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.75" />
+        <TextView
+            android:id="@+id/recommendations"
+            style="@style/title_text_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:textSize="18sp"
+            android:text="@string/recommendations"
+            app:layout_constraintStart_toStartOf="@id/meal_of_day_tv"
+            app:layout_constraintTop_toBottomOf="@id/viewpager" />
 
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/meals_rv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="8dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/recommendations" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.core.widget.NestedScrollView>
