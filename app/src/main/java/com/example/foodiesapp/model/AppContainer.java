@@ -1,19 +1,24 @@
 package com.example.foodiesapp.model;
 
+import com.example.foodiesapp.model.repository.CategoryRepository;
+import com.example.foodiesapp.model.repository.MealsRepository;
 import com.example.foodiesapp.network.MealsRemoteDataSource;
-import com.example.foodiesapp.network.MealsService;
-
-import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
 
 public class AppContainer {
-    MealsRepository repository;
+    MealsRepository mealsRepository;
+    CategoryRepository categoryRepository;
+
     public AppContainer() {
         MealsRemoteDataSource remoteDataSource = new MealsRemoteDataSource();
-        repository = new MealsRepository(remoteDataSource);
+        mealsRepository = new MealsRepository(remoteDataSource);
+        categoryRepository = new CategoryRepository(remoteDataSource);
     }
 
-    public MealsRepository getRepository() {
-        return repository;
+    public MealsRepository getMealsRepository() {
+        return mealsRepository;
+    }
+
+    public CategoryRepository getCategoryRepository() {
+        return categoryRepository;
     }
 }

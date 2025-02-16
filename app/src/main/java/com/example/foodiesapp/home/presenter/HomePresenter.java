@@ -1,10 +1,7 @@
 package com.example.foodiesapp.home.presenter;
 
 import com.example.foodiesapp.home.view.HomeContract;
-import com.example.foodiesapp.model.meal.Meal;
-import com.example.foodiesapp.model.MealsRepository;
-
-import java.util.List;
+import com.example.foodiesapp.model.repository.MealsRepository;
 
 public class HomePresenter {
     MealsRepository repository;
@@ -17,10 +14,10 @@ public class HomePresenter {
     }
 
     public void getInspirationMeals(){
-        if (repository.getCachedMeals().isEmpty()){
+        if (repository.getInspirationMeals().isEmpty()){
             repository.getRandomInspirationMeals(contract);
         } else {
-            contract.assignMealsListToPager(repository.getCachedMeals());
+            contract.assignMealsListToPager(repository.getInspirationMeals());
         }
     }
 
@@ -30,12 +27,5 @@ public class HomePresenter {
         } else {
             contract.assignMealsListToRecommendations(repository.getRecommendedMeals());
         }
-    }
-
-    public void cacheData(List<Meal> meals) {
-        repository.setCachedMeals(meals);
-    }
-    public void cacheRecommendationData(List<Meal> meals) {
-        repository.setRecommendedMeals(meals);
     }
 }

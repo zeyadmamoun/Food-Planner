@@ -60,10 +60,15 @@ dependencies {
 
     // Retrofit
     implementation (libs.retrofit)
-    // Gson Converter
+    implementation (libs.adapter.rxjava3)
     implementation(libs.converter.gson)
+
     //Glide
     implementation (libs.github.glide)
+
+    // RXJava
+    implementation (libs.rxandroid)
+    implementation (libs.rxjava)
 
     implementation(libs.appcompat)
     implementation(libs.material)

@@ -20,7 +20,7 @@ import com.example.foodiesapp.home.view.adapters.InspireMealsAdapter;
 import com.example.foodiesapp.home.view.adapters.RecommendationsAdapter;
 import com.example.foodiesapp.home.view.adapters.SliderTransformer;
 import com.example.foodiesapp.model.meal.Meal;
-import com.example.foodiesapp.model.MealsRepository;
+import com.example.foodiesapp.model.repository.MealsRepository;
 import com.google.firebase.auth.FirebaseAuth;
 
 import java.util.List;
@@ -39,7 +39,7 @@ public class HomeFragment extends Fragment implements HomeContract{
         super.onCreate(savedInstanceState);
         mAuth = FirebaseAuth.getInstance();
         MealsApplication app = (MealsApplication) requireActivity().getApplication();
-        MealsRepository repo = app.getContainer().getRepository();
+        MealsRepository repo = app.getContainer().getMealsRepository();
         presenter = new HomePresenter(repo,this);
     }
 
@@ -75,8 +75,6 @@ public class HomeFragment extends Fragment implements HomeContract{
 
     @Override
     public void assignMealsListToPager(List<Meal> meals) {
-        Log.i(TAG, "assignMealsListToPager: meals list size = " + meals.size());
-        presenter.cacheData(meals);
         viewPagerAdapter.setList(meals);
         viewPagerAdapter.notifyDataSetChanged();
     }
@@ -84,7 +82,6 @@ public class HomeFragment extends Fragment implements HomeContract{
     @Override
     public void assignMealsListToRecommendations(List<Meal> recommendationMeals) {
         Log.i(TAG, "assignMealsListToPager: meals list size = " + recommendationMeals.size());
-        presenter.cacheRecommendationData(recommendationMeals);
         recommendationsAdapter.setList(recommendationMeals);
         recommendationsAdapter.notifyDataSetChanged();
     }
