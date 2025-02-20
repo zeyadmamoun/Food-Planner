@@ -12,6 +12,7 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class MainActivity extends AppCompatActivity {
     BottomNavigationView bottomNavigationView;
+    NavController navController;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,7 +23,7 @@ public class MainActivity extends AppCompatActivity {
         NavHostFragment navHostFragment = (NavHostFragment) getSupportFragmentManager().
                 findFragmentById(R.id.nav_host_fragment);
 
-        NavController navController = navHostFragment.getNavController();
+        navController = navHostFragment.getNavController();
         NavigationUI.setupWithNavController(bottomNavigationView,navController);
 
         navController.addOnDestinationChangedListener((navController1, navDestination, bundle) -> {
@@ -34,5 +35,14 @@ public class MainActivity extends AppCompatActivity {
                 bottomNavigationView.setVisibility(View.VISIBLE);
             }
         });
+    }
+
+    @Override
+    public void onBackPressed() {
+        if (navController.getCurrentDestination().getId() == R.id.loginFragment){
+            this.finish();
+        } else {
+            super.onBackPressed();
+        }
     }
 }

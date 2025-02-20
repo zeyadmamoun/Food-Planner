@@ -13,19 +13,18 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.example.foodiesapp.R;
-import com.example.foodiesapp.home.view.HomeContract;
 import com.example.foodiesapp.model.category.Category;
 import com.example.foodiesapp.search.view.SearchContract;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class CategoryCardsAdapter extends RecyclerView.Adapter<CategoryCardViewHolder> {
+public class CategoriesAdapter extends RecyclerView.Adapter<CategoryCardViewHolder> {
     Context context;
     SearchContract contract;
     List<Category> mealsList;
 
-    public CategoryCardsAdapter(Context context, SearchContract contract) {
+    public CategoriesAdapter(Context context, SearchContract contract) {
         this.context = context;
         this.contract = contract;
         this.mealsList = new ArrayList<>();

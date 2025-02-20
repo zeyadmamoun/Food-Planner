@@ -1,21 +1,13 @@
 package com.example.foodiesapp.network;
 
-import android.util.Log;
-
-import com.example.foodiesapp.model.category.Category;
 import com.example.foodiesapp.model.category.CategoryListResponse;
+import com.example.foodiesapp.model.country.CountryResponse;
+import com.example.foodiesapp.model.ingredient.IngredientResponse;
 import com.example.foodiesapp.model.meal.MealsListResponse;
-import com.example.foodiesapp.home.presenter.HomePresenter;
-import com.example.foodiesapp.search.view.SearchContract;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Random;
 
-import io.reactivex.rxjava3.core.Observable;
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
+import io.reactivex.rxjava3.core.Single;
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava3.RxJava3CallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
@@ -34,16 +26,24 @@ public class MealsRemoteDataSource {
         service = retrofit.create(MealsService.class);
     }
 
-    public Observable<MealsListResponse> getInspirationMeals() {
+    public Single<MealsListResponse> getInspirationMeals() {
         return service.getMeals(generateRandomLetter());
     }
 
-    public Observable<MealsListResponse> getRecommendMeals(){
+    public Single<MealsListResponse> getRecommendMeals(){
         return service.getRecommendedMeals("");
     }
 
-    public Observable<CategoryListResponse> getAllCategories() {
+    public Single<CategoryListResponse> getAllCategories() {
         return service.getCategories();
+    }
+
+    public Single<CountryResponse> getAllCountries() {
+        return service.getCountries();
+    }
+
+    public Single<IngredientResponse> getAllIngredients(){
+        return service.getIngredients();
     }
 
     private String generateRandomLetter() {

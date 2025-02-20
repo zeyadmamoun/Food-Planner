@@ -23,7 +23,6 @@ public class RegistrationPresenter {
                         FirebaseUser user = mAuth.getCurrentUser();
                         assert user != null;
                         updateUsername(user,username);
-                        contract.navigateToHomeScreen();
                     } else {
                         Log.d(RegistrationFragment.TAG, "createUserWithEmail:success");
                         contract.showToast("Registration Failed, please try again");
@@ -33,19 +32,22 @@ public class RegistrationPresenter {
 
     // function to update the name in user profile in the firebase
     private void updateUsername(FirebaseUser user, String username){
-        UserProfileChangeRequest profileUpdates = new UserProfileChangeRequest.Builder()
-                .setDisplayName(username)
-                .build();
+        if (user != null) {
+            UserProfileChangeRequest profileUpdates = new UserProfileChangeRequest.Builder()
+                    .setDisplayName(username)
+                    .build();
 
-        user.updateProfile(profileUpdates)
-                .addOnCompleteListener(task -> {
-                    if (task.isSuccessful()) {
-                        // Profile updated successfully
-                        Log.d("TAG", "User profile updated.");
-                    } else {
-                        // error updating the name
-                        Log.e("TAG", "Error updating profile", task.getException());
-                    }
-                });
+            user.updateProfile(profileUpdates)
+                    .addOnCompleteListener(task -> {
+                        if (task.isSuccessful()) {
+                            Log.d("FirebaseAuth", "User name updated successfully.");
+                            contract.navigateToHomeScreen();
+                        } else {
+                            Log.e("FirebaseAuth", "Failed to update user name.", task.getException());
+                        }
+                    });
+        } else {
+            Log.e("FirebaseAuth", "No authenticated user found.");
+        }
     }
 }

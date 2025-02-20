@@ -13,7 +13,7 @@
             android:id="@+id/search_bar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Search" />
+            android:hint="@string/search_by_category" />
 
     </com.google.android.material.appbar.AppBarLayout>
 
@@ -29,32 +29,40 @@
             android:gravity="center_horizontal">
 
             <com.google.android.material.chip.ChipGroup
+                android:id="@+id/chip_group"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                app:singleSelection="true"
+                app:selectionRequired="true">
 
                 <com.google.android.material.chip.Chip
+                    android:id="@+id/category_chip"
                     style="@style/Widget.Material3.Chip.Suggestion"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/category" />
 
                 <com.google.android.material.chip.Chip
+                    android:id="@+id/ingredient_chip"
+                    style="@style/Widget.Material3.Chip.Suggestion"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/ingredient"/>
 
                 <com.google.android.material.chip.Chip
+                    android:id="@+id/country_chip"
+                    style="@style/Widget.Material3.Chip.Suggestion"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/country"/>
             </com.google.android.material.chip.ChipGroup>
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/categories_rv"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginBottom="50dp"
-                android:padding="4dp" />
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/categories_rv"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginBottom="50dp"
+                    android:padding="4dp" />
         </LinearLayout>
 
     </androidx.core.widget.NestedScrollView>
@@ -63,8 +71,7 @@
         android:id="@+id/search_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:hint="Search by meal category, country, or ingredient"
-        app:layout_anchor="@id/search_bar">
+        android:hint="@string/search_by_category">
 
     </com.google.android.material.search.SearchView>
 

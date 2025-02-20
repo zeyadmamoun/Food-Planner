@@ -21,13 +21,11 @@ import com.example.foodiesapp.home.view.adapters.RecommendationsAdapter;
 import com.example.foodiesapp.home.view.adapters.SliderTransformer;
 import com.example.foodiesapp.model.meal.Meal;
 import com.example.foodiesapp.model.repository.MealsRepository;
-import com.google.firebase.auth.FirebaseAuth;
 
 import java.util.List;
 
 public class HomeFragment extends Fragment implements HomeContract{
 
-    private FirebaseAuth mAuth;
     FragmentHomeBinding binding;
     HomePresenter presenter;
     InspireMealsAdapter viewPagerAdapter;
@@ -37,7 +35,6 @@ public class HomeFragment extends Fragment implements HomeContract{
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        mAuth = FirebaseAuth.getInstance();
         MealsApplication app = (MealsApplication) requireActivity().getApplication();
         MealsRepository repo = app.getContainer().getMealsRepository();
         presenter = new HomePresenter(repo,this);
@@ -53,6 +50,7 @@ public class HomeFragment extends Fragment implements HomeContract{
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        binding.usernameTv.setText(" " + presenter.getUsername());
         // Initializing viewPager adapter
         viewPagerAdapter = new InspireMealsAdapter(getActivity(),this);
         binding.viewpager.setAdapter(viewPagerAdapter);
@@ -66,11 +64,6 @@ public class HomeFragment extends Fragment implements HomeContract{
 
         presenter.getInspirationMeals();
         presenter.getRecommendationMeals();
-
-//        binding.signout.setOnClickListener(view1 -> {
-//            mAuth.signOut();
-//            Navigation.findNavController(requireView()).navigateUp();
-//        });
     }
 
     @Override
