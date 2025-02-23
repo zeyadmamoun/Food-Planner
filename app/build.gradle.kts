@@ -70,6 +70,14 @@ dependencies {
     implementation (libs.rxandroid)
     implementation (libs.rxjava)
 
+    // youtube
+    implementation (libs.core)
+
+    // Room
+    implementation(libs.androidx.room.runtime)
+    annotationProcessor(libs.androidx.room.compiler)
+    implementation(libs.androidx.room.rxjava3)
+
     implementation(libs.appcompat)
     implementation(libs.material)
     implementation(libs.activity)

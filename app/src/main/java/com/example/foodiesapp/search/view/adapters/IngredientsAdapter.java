@@ -16,16 +16,19 @@ import com.bumptech.glide.Glide;
 import com.example.foodiesapp.R;
 import com.example.foodiesapp.model.ingredient.Ingredient;
 import com.example.foodiesapp.search.presenter.SearchPresenter;
+import com.example.foodiesapp.search.view.SearchContract;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class IngredientsAdapter extends RecyclerView.Adapter<IngredientCardViewHolder> {
     Context context;
+    SearchContract contract;
     List<Ingredient> ingredientList = new ArrayList<>();
 
-    public IngredientsAdapter(Context context) {
+    public IngredientsAdapter(Context context,SearchContract contract) {
         this.context = context;
+        this.contract = contract;
     }
 
     @NonNull
@@ -43,6 +46,10 @@ public class IngredientsAdapter extends RecyclerView.Adapter<IngredientCardViewH
 
         String imgUrl = "https://www.themealdb.com/images/ingredients/"+ingredient.getStrIngredient()+".png";
         Glide.with(context).load(imgUrl).into(holder.ingredientImage);
+
+        holder.ingredientCard.setOnClickListener(view -> {
+            contract.NavigateToFilteredMeals(ingredient.getStrIngredient());
+        });
     }
 
     public void setList(List<Ingredient> newList) {

@@ -10,5 +10,6 @@ public interface SearchContract {
     void updateCategoriesRecyclerView(List<Category> categoriesList);
     void updateIngredientsRecyclerView(List<Ingredient> ingredientList);
     void updateCountriesRecyclerView(List<Country> countryList);
+    void NavigateToFilteredMeals(String Query);
     void showToast(String msg);
 }

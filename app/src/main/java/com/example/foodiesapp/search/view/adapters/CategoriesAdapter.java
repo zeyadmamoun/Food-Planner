@@ -49,6 +49,10 @@ public class CategoriesAdapter extends RecyclerView.Adapter<CategoryCardViewHold
         holder.categoryTitle.setText(category.getStrCategory());
         // loading image
         Glide.with(context).load(category.getStrCategoryThumb()).into(holder.categoryImage);
+
+        holder.categoryCard.setOnClickListener(view -> {
+            contract.NavigateToFilteredMeals(category.getStrCategory());
+        });
     }
 
     @Override

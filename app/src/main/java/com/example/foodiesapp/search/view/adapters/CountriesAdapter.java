@@ -16,16 +16,19 @@ import com.example.foodiesapp.R;
 import com.example.foodiesapp.model.country.Country;
 import com.example.foodiesapp.model.repository.CategoryRepository;
 import com.example.foodiesapp.search.presenter.SearchPresenter;
+import com.example.foodiesapp.search.view.SearchContract;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class CountriesAdapter extends RecyclerView.Adapter<CountryCardViewHolder> {
     Context context;
+    SearchContract contract;
     List<Country> countryList = new ArrayList<>();
 
-    public CountriesAdapter(Context context) {
+    public CountriesAdapter(Context context, SearchContract contract) {
         this.context = context;
+        this.contract = contract;
     }
 
     @NonNull
@@ -44,6 +47,11 @@ public class CountriesAdapter extends RecyclerView.Adapter<CountryCardViewHolder
         if(CategoryRepository.flagsMap.get(country.getStrArea()) != null){
             holder.countryImage.setImageResource(CategoryRepository.flagsMap.get(country.getStrArea()));
         }
+
+        holder.countryCard.setOnClickListener(view -> {
+            contract.NavigateToFilteredMeals(country.getStrArea());
+        });
+
     }
 
     public void setList(List<Country> newList){

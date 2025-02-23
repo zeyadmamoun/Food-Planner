@@ -23,4 +23,13 @@
         <item name="android:textColor">@color/primary</item>
         <item name="android:background">@drawable/outlined_button_background</item>
     </style>
+
+    <style name="circleImageView" parent="">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">50%</item>
+    </style>
+
+    <style name="CustomSearchViewStyle" parent="Widget.AppCompat.Light.SearchView">
+        <item name="android:backgroundTint">#f1fdda</item>
+    </style>
 </resources>

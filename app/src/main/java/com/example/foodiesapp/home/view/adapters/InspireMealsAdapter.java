@@ -58,17 +58,6 @@ public class InspireMealsAdapter extends RecyclerView.Adapter<InspireMealViewHol
         holder.addBtn.setOnClickListener(view -> {
             contract.showToast("add button clicked");
         });
-
-        holder.favoriteIcon.setOnClickListener(view -> {
-            Drawable currentDrawable = holder.favoriteIcon.getDrawable();
-            Drawable targetDrawable = ContextCompat.getDrawable(context, R.drawable.favorite_outlined_ic);
-            assert targetDrawable != null;
-            if (currentDrawable.getConstantState() == targetDrawable.getConstantState()) {
-                holder.favoriteIcon.setImageResource(R.drawable.favorite_filled_ic);
-            } else {
-                holder.favoriteIcon.setImageResource(R.drawable.favorite_outlined_ic);
-            }
-        });
     }
 
     @Override
@@ -80,7 +69,6 @@ public class InspireMealsAdapter extends RecyclerView.Adapter<InspireMealViewHol
 class InspireMealViewHolder extends RecyclerView.ViewHolder {
     CardView mealCard;
     ImageView mealImage;
-    ImageView favoriteIcon;
     TextView mealTitle;
     TextView mealOrigin;
     TextView category;
@@ -90,7 +78,6 @@ class InspireMealViewHolder extends RecyclerView.ViewHolder {
         super(itemView);
         mealCard = itemView.findViewById(R.id.meal_card);
         mealImage = itemView.findViewById(R.id.recipeImage);
-        favoriteIcon = itemView.findViewById(R.id.favorite_icon);
         mealTitle = itemView.findViewById(R.id.recipeTitle_tv);
         mealOrigin = itemView.findViewById(R.id.recipeOrigin_tv);
         category = itemView.findViewById(R.id.card_category_tv);

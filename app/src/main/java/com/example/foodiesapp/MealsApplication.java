@@ -10,7 +10,7 @@ public class MealsApplication extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
-        container = new AppContainer();
+        container = new AppContainer(this.getApplicationContext());
     }
 
     public AppContainer getContainer() {

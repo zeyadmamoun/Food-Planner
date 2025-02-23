@@ -4,12 +4,13 @@ import androidx.annotation.NonNull;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
-@Entity(tableName = "favorites")
-public class Meal {
+@Entity(tableName = "meals_plan")
+public class DatabaseMeal {
 
     @PrimaryKey
     @NonNull
     private String idMeal;
+    private String mealDate;
     private String strMeal;
     private String strCategory;
     private String strArea;
@@ -37,44 +38,14 @@ public class Meal {
     private String strIngredient19;
     private String strIngredient20;
 
-    public Meal(String idMeal, String strMeal, String strCategory, String strArea,
-                String strInstructions, String strMealThumb, String strYoutube,
-                String strIngredient1, String strIngredient2, String strIngredient3,
-                String strIngredient4, String strIngredient5, String strIngredient6, String strIngredient7,
-                String strIngredient8, String strIngredient9, String strIngredient10, String strIngredient11,
-                String strIngredient12, String strIngredient13, String strIngredient14, String strIngredient15,
-                String strIngredient16, String strIngredient17, String strIngredient18, String strIngredient19,
-                String strIngredient20) {
-        this.idMeal = idMeal;
-        this.strMeal = strMeal;
-        this.strCategory = strCategory;
-        this.strArea = strArea;
-        this.strInstructions = strInstructions;
-        this.strMealThumb = strMealThumb;
-        this.strYoutube = strYoutube;
-        this.strIngredient1 = strIngredient1;
-        this.strIngredient2 = strIngredient2;
-        this.strIngredient3 = strIngredient3;
-        this.strIngredient4 = strIngredient4;
-        this.strIngredient5 = strIngredient5;
-        this.strIngredient6 = strIngredient6;
-        this.strIngredient7 = strIngredient7;
-        this.strIngredient8 = strIngredient8;
-        this.strIngredient9 = strIngredient9;
-        this.strIngredient10 = strIngredient10;
-        this.strIngredient11 = strIngredient11;
-        this.strIngredient12 = strIngredient12;
-        this.strIngredient13 = strIngredient13;
-        this.strIngredient14 = strIngredient14;
-        this.strIngredient15 = strIngredient15;
-        this.strIngredient16 = strIngredient16;
-        this.strIngredient17 = strIngredient17;
-        this.strIngredient18 = strIngredient18;
-        this.strIngredient19 = strIngredient19;
-        this.strIngredient20 = strIngredient20;
+    public String getMealDate() {
+        return mealDate;
     }
 
-    // Getters and Setters
+    public void setMealDate(String mealDate) {
+        this.mealDate = mealDate;
+    }
+
     public String getIdMeal() {
         return idMeal;
     }
@@ -289,39 +260,5 @@ public class Meal {
 
     public void setStrIngredient20(String strIngredient20) {
         this.strIngredient20 = strIngredient20;
-    }
-
-    @NonNull
-    @Override
-    public String toString() {
-        return "Meal{" +
-                "idMeal='" + idMeal + '\'' +
-                ", strMeal='" + strMeal + '\'' +
-                ", strCategory='" + strCategory + '\'' +
-                ", strArea='" + strArea + '\'' +
-                ", strInstructions='" + strInstructions + '\'' +
-                ", strMealThumb='" + strMealThumb + '\'' +
-                ", strYoutube='" + strYoutube + '\'' +
-                ", strIngredient1='" + strIngredient1 + '\'' +
-                ", strIngredient2='" + strIngredient2 + '\'' +
-                ", strIngredient3='" + strIngredient3 + '\'' +
-                ", strIngredient4='" + strIngredient4 + '\'' +
-                ", strIngredient5='" + strIngredient5 + '\'' +
-                ", strIngredient6='" + strIngredient6 + '\'' +
-                ", strIngredient7='" + strIngredient7 + '\'' +
-                ", strIngredient8='" + strIngredient8 + '\'' +
-                ", strIngredient9='" + strIngredient9 + '\'' +
-                ", strIngredient10='" + strIngredient10 + '\'' +
-                ", strIngredient11='" + strIngredient11 + '\'' +
-                ", strIngredient12='" + strIngredient12 + '\'' +
-                ", strIngredient13='" + strIngredient13 + '\'' +
-                ", strIngredient14='" + strIngredient14 + '\'' +
-                ", strIngredient15='" + strIngredient15 + '\'' +
-                ", strIngredient16='" + strIngredient16 + '\'' +
-                ", strIngredient17='" + strIngredient17 + '\'' +
-                ", strIngredient18='" + strIngredient18 + '\'' +
-                ", strIngredient19='" + strIngredient19 + '\'' +
-                ", strIngredient20='" + strIngredient20 + '\'' +
-                '}';
     }
 }

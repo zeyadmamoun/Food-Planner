@@ -40,15 +40,6 @@
                 android:textColor="@color/tretiary"
                 android:textSize="12sp" />
 
-            <ImageView
-                android:id="@+id/favorite_icon"
-                android:layout_width="35sp"
-                android:layout_height="35dp"
-                android:layout_gravity="end|top"
-                android:layout_margin="16dp"
-                android:contentDescription="@string/favorite_icon"
-                android:src="@drawable/favorite_outlined_ic" />
-
         </FrameLayout>
 
         <LinearLayout

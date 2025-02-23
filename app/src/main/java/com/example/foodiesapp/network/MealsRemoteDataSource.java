@@ -3,6 +3,7 @@ package com.example.foodiesapp.network;
 import com.example.foodiesapp.model.category.CategoryListResponse;
 import com.example.foodiesapp.model.country.CountryResponse;
 import com.example.foodiesapp.model.ingredient.IngredientResponse;
+import com.example.foodiesapp.model.meal.FilteredMealResponse;
 import com.example.foodiesapp.model.meal.MealsListResponse;
 
 import java.util.Random;
@@ -44,6 +45,22 @@ public class MealsRemoteDataSource {
 
     public Single<IngredientResponse> getAllIngredients(){
         return service.getIngredients();
+    }
+
+    public Single<FilteredMealResponse> getMealsByMainIngredient(String ingredient){
+        return service.getMealsFilteredByMainIngredient(ingredient);
+    }
+
+    public Single<FilteredMealResponse> getMealsByCategory(String category){
+        return service.getMealsFilteredByCategory(category);
+    }
+
+    public Single<FilteredMealResponse> getMealsByCountry(String country){
+        return service.getMealsFilteredByCountry(country);
+    }
+
+    public Single<MealsListResponse> getMealDetails(String id){
+        return service.getMealDetail(id);
     }
 
     private String generateRandomLetter() {

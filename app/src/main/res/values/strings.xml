@@ -43,4 +43,11 @@
     <string name="country">Country</string>
     <string name="user">User</string>
     <string name="search_by_category">Search by category</string>
+    <string name="result_name">Result name</string>
+    <string name="brief_description_about_this_result_item">Brief description about this result item</string>
+    <string name="description">Category</string>
+    <string name="ingredients">Ingredient</string>
+    <string name="egypt">Egypt</string>
+    <string name="origin">Origin</string>
+    <string name="cooking_steps">Cooking steps</string>
 </resources>
