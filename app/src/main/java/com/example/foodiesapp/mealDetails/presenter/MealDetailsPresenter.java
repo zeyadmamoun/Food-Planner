@@ -28,12 +28,13 @@ public class MealDetailsPresenter {
         this.contract = contract;
     }
 
-    public Meal getCurrentMeal() {
-        return currentMeal;
-    }
+//    public Meal getCurrentMeal() {
+//        return currentMeal;
+//    }
 
     @SuppressLint("CheckResult")
-    public void getMealDetails(String id) {repository.getMealDetails(id).subscribeOn(Schedulers.io())
+    public void getMealDetails(String id) {
+        repository.getMealDetails(id).subscribeOn(Schedulers.io())
                 .map(item -> item.getMeals().get(0))
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(
@@ -49,23 +50,66 @@ public class MealDetailsPresenter {
                         },
                         throwable -> Log.i(TAG, throwable.toString())
                 );
+        if (currentMeal != null) {
+            repository.getMealById(currentMeal.getIdMeal()).subscribeOn(Schedulers.io())
+                    .observeOn(AndroidSchedulers.mainThread())
+                    .subscribe(
+                            meal -> contract.updateFavoriteStateToAdded(),
+                            throwable -> {
+                                contract.updateFavoriteStateToRemoved();
+                                Log.i(TAG, "getMealDetails: " + throwable.toString());
+                            }
+                    );
+        }
+
     }
 
     @SuppressLint("CheckResult")
-    public void addMealToPlan(DatabaseMeal meal){
-        repository.addMealToPlan(meal).subscribeOn(Schedulers.io())
+    public void onFavoriteButtonClicked() {
+        repository.getMealById(currentMeal.getIdMeal()).subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(
-                        () -> contract.showToast("Added to your plan")
+                        meal -> {
+                            removeMealFromFavorites(meal);
+                            contract.updateFavoriteStateToRemoved();
+                            contract.showToast("meal removed from favorites");
+                        },
+                        throwable -> {
+                            addMealToFavorites(currentMeal);
+                            contract.updateFavoriteStateToAdded();
+                            contract.showToast("meal added to favorites");
+                            Log.i(TAG, "getMealDetails: " + throwable.toString());
+                        }
                 );
     }
 
     @SuppressLint("CheckResult")
-    public void addMealToFavorites(Meal meal){
+    public void addMealToPlan(String date) {
+        if (currentMeal != null){
+            DatabaseMeal meal = new DatabaseMeal(currentMeal,date);
+            repository.addMealToPlan(meal).subscribeOn(Schedulers.io())
+                    .observeOn(AndroidSchedulers.mainThread())
+                    .subscribe(
+                            () -> contract.showToast("meal is now added to your plan")
+                    );
+        }
+    }
+
+    @SuppressLint("CheckResult")
+    public void addMealToFavorites(Meal meal) {
         repository.addMealToFavorite(meal).subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(
-                        () -> contract.showToast("Added to your favorites")
+                        () -> contract.updateFavoriteStateToAdded()
+                );
+    }
+
+    @SuppressLint("CheckResult")
+    public void removeMealFromFavorites(Meal meal) {
+        repository.removeMealFromFavorites(meal).subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(
+                        () -> contract.updateFavoriteStateToRemoved()
                 );
     }
 

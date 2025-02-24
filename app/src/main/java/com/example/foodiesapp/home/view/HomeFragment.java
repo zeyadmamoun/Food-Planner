@@ -21,8 +21,13 @@ import com.example.foodiesapp.home.view.adapters.RecommendationsAdapter;
 import com.example.foodiesapp.home.view.adapters.SliderTransformer;
 import com.example.foodiesapp.model.meal.Meal;
 import com.example.foodiesapp.model.repository.MealsRepository;
+import com.google.android.material.datepicker.CalendarConstraints;
+import com.google.android.material.datepicker.DateValidatorPointForward;
+import com.google.android.material.datepicker.MaterialDatePicker;
 
+import java.util.Calendar;
 import java.util.List;
+import java.util.TimeZone;
 
 public class HomeFragment extends Fragment implements HomeContract{
 
@@ -66,6 +71,26 @@ public class HomeFragment extends Fragment implements HomeContract{
         presenter.getRecommendationMeals();
     }
 
+    private void showDatePicker(Meal meal) {
+        // we decide the constraints of date picker
+        CalendarConstraints constraintsBuilder = new CalendarConstraints.Builder()
+                .setValidator(DateValidatorPointForward.now()).build();
+
+        MaterialDatePicker<Long> datePicker = MaterialDatePicker.Builder.datePicker()
+                .setTitleText("Select date")
+                .setInputMode(MaterialDatePicker.INPUT_MODE_CALENDAR)
+                .setCalendarConstraints(constraintsBuilder)
+                .build();
+
+        datePicker.show(getActivity().getSupportFragmentManager(), "PlanDatePicker");
+        datePicker.addOnPositiveButtonClickListener(selection -> {
+            Calendar calendar = Calendar.getInstance(TimeZone.getTimeZone("UTC"));
+            calendar.setTimeInMillis(selection);
+            String date = calendar.getTime().toString();
+            presenter.addMealToPlan(meal,date);
+        });
+    }
+
     @Override
     public void assignMealsListToPager(List<Meal> meals) {
         viewPagerAdapter.setList(meals);
@@ -77,6 +102,11 @@ public class HomeFragment extends Fragment implements HomeContract{
         Log.i(TAG, "assignMealsListToPager: meals list size = " + recommendationMeals.size());
         recommendationsAdapter.setList(recommendationMeals);
         recommendationsAdapter.notifyDataSetChanged();
+    }
+
+    @Override
+    public void onAddToPlanClicked(Meal meal) {
+        showDatePicker(meal);
     }
 
     @Override

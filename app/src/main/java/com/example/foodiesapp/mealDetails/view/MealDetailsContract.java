@@ -9,5 +9,7 @@ public interface MealDetailsContract {
     void assignStepsRecyclerView(List<String> steps);
     void updateUI(Meal meal);
     void setupVideo(String videoLink);
+    void updateFavoriteStateToRemoved();
+    void updateFavoriteStateToAdded();
     void showToast(String msg);
 }

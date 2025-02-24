@@ -44,7 +44,7 @@
     </fragment>
     <fragment
         android:id="@+id/planFragment"
-        android:name="com.example.foodiesapp.plan.PlanFragment"
+        android:name="com.example.foodiesapp.plan.view.PlanFragment"
         android:label="fragment_plan"
         tools:layout="@layout/fragment_plan" />
     <fragment

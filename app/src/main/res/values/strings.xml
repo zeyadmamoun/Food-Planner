@@ -50,4 +50,6 @@
     <string name="egypt">Egypt</string>
     <string name="origin">Origin</string>
     <string name="cooking_steps">Cooking steps</string>
+    <string name="your_weekly_plan">Your Weekly Plan</string>
+    <string name="no_meals_added_this_day">No Meals Added this day</string>
 </resources>

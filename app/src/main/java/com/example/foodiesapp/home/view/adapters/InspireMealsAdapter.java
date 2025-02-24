@@ -1,7 +1,6 @@
 package com.example.foodiesapp.home.view.adapters;
 
 import android.content.Context;
-import android.graphics.drawable.Drawable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,7 +10,6 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
-import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
@@ -56,7 +54,7 @@ public class InspireMealsAdapter extends RecyclerView.Adapter<InspireMealViewHol
         Glide.with(context).load(meal.getStrMealThumb()).into(holder.mealImage);
 
         holder.addBtn.setOnClickListener(view -> {
-            contract.showToast("add button clicked");
+            contract.onAddToPlanClicked(meal);
         });
     }
 

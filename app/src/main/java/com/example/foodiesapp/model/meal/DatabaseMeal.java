@@ -38,6 +38,39 @@ public class DatabaseMeal {
     private String strIngredient19;
     private String strIngredient20;
 
+    public DatabaseMeal() {}
+
+    public DatabaseMeal(Meal meal,String date) {
+        this.idMeal = meal.getIdMeal();
+        this.mealDate = date;
+        this.strMeal = meal.getStrMeal();
+        this.strCategory = meal.getStrCategory();
+        this.strArea = meal.getStrArea();
+        this.strInstructions = meal.getStrInstructions();
+        this.strMealThumb = meal.getStrMealThumb();
+        this.strYoutube = meal.getStrYoutube();
+        this.strIngredient1 = meal.getStrIngredient1();
+        this.strIngredient2 = meal.getStrIngredient2();
+        this.strIngredient3 = meal.getStrIngredient3();
+        this.strIngredient4 = meal.getStrIngredient4();
+        this.strIngredient5 = meal.getStrIngredient5();
+        this.strIngredient6 = meal.getStrIngredient6();
+        this.strIngredient7 = meal.getStrIngredient7();
+        this.strIngredient8 = meal.getStrIngredient8();
+        this.strIngredient9 = meal.getStrIngredient9();
+        this.strIngredient10 = meal.getStrIngredient10();
+        this.strIngredient11 = meal.getStrIngredient11();
+        this.strIngredient12 = meal.getStrIngredient12();
+        this.strIngredient13 = meal.getStrIngredient13();
+        this.strIngredient14 = meal.getStrIngredient14();
+        this.strIngredient15 = meal.getStrIngredient15();
+        this.strIngredient16 = meal.getStrIngredient16();
+        this.strIngredient17 = meal.getStrIngredient17();
+        this.strIngredient18 = meal.getStrIngredient18();
+        this.strIngredient19 = meal.getStrIngredient19();
+        this.strIngredient20 = meal.getStrIngredient20();
+    }
+
     public String getMealDate() {
         return mealDate;
     }

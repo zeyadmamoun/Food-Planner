@@ -7,5 +7,6 @@ import java.util.List;
 public interface HomeContract {
     void assignMealsListToPager(List<Meal> meals);
     void assignMealsListToRecommendations(List<Meal> recommendationMeals);
+    void onAddToPlanClicked(Meal meal);
     void showToast(String msg);
 }

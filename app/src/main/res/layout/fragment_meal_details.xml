@@ -4,9 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:fillViewport="true"
+    android:layout_marginBottom="70dp"
     android:background="@color/white"
-    android:layout_marginBottom="60dp"
+    android:fillViewport="true"
     tools:context=".mealDetails.view.MealDetailsFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -35,27 +35,40 @@
                 android:background="@drawable/transparent_image_detail" />
 
             <Button
-                style="?attr/materialIconButtonFilledTonalStyle"
                 android:id="@+id/backButton"
-                android:layout_marginTop="16dp"
-                android:layout_marginStart="16dp"
+                style="?attr/materialIconButtonFilledTonalStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:contentDescription="@null"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
                 android:backgroundTint="@color/white"
+                android:contentDescription="@null"
                 app:icon="@drawable/arrow_back_ic" />
 
             <Button
+                android:id="@+id/favoriteButton_Outlined"
                 style="?attr/materialIconButtonFilledTonalStyle"
-                android:id="@+id/favoriteButton"
-                android:layout_marginTop="16dp"
-                android:layout_marginEnd="16dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:contentDescription="@null"
                 android:layout_gravity="top|end"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="16dp"
                 android:backgroundTint="@color/white"
+                android:contentDescription="@null"
                 app:icon="@drawable/favorite_outlined_ic" />
+
+            <Button
+                android:id="@+id/favoriteButton_Filled"
+                style="?attr/materialIconButtonOutlinedStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="top|end"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="16dp"
+                android:backgroundTint="@color/white"
+                android:contentDescription="@null"
+                android:visibility="invisible"
+                app:icon="@drawable/filled_favorite_ic" />
 
         </FrameLayout>
 
@@ -65,8 +78,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/meal_name"
+            android:textAlignment="center"
             android:textColor="@color/primary"
-            android:textSize="20sp"
+            android:textSize="22sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/meal_image_fl" />
@@ -76,11 +90,11 @@
             style="@style/title_text_view"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="8dp"
-            android:layout_marginStart="8dp"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="8dp"
             android:text="@string/description"
             android:textColor="@color/primary"
-            android:textSize="16sp"
+            android:textSize="18sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/meal_name" />
 
@@ -99,15 +113,15 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom"
+            android:layout_marginHorizontal="16dp"
             android:layout_marginTop="8dp"
             android:layout_marginBottom="8dp"
-            android:layout_marginHorizontal="16dp"
             android:background="@drawable/button_background"
-            app:layout_constraintTop_toBottomOf="@id/meal_description"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
             android:text="@string/add_to_your_plan"
-            app:icon="@drawable/calendar_ic" />
+            app:icon="@drawable/calendar_ic"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/meal_description" />
 
         <TextView
             android:id="@+id/meal_origin"
@@ -124,12 +138,12 @@
             android:id="@+id/origin_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="64dp"
             android:fontFamily="@font/poppins_bold"
             android:text="@string/origin"
             android:textColor="@color/primary"
-            android:textSize="16sp"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="64dp"
+            android:textSize="18sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/meal_name" />
 
@@ -140,10 +154,10 @@
             android:layout_height="wrap_content"
             android:layout_margin="8dp"
             android:layout_marginStart="216dp"
-            android:layout_marginTop="12dp"
+            android:layout_marginTop="16dp"
             android:text="@string/ingredients"
             android:textColor="@color/primary"
-            android:textSize="16sp"
+            android:textSize="20sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/addMealButton" />
 
@@ -166,8 +180,8 @@
             android:text="@string/cooking_steps"
             android:textColor="@color/primary"
             android:textSize="16sp"
-            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/meal_ingredients_rv" />
 
         <androidx.recyclerview.widget.RecyclerView
@@ -179,17 +193,17 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/Cooking_step_title" />
 
-            <com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTubePlayerView
-                android:id="@+id/youtube_player_view"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="8dp"
-                android:layout_marginVertical="16dp"
-                app:videoId="S0Q4gqBUs7c"
-                app:autoPlay="true"
-                app:layout_constraintTop_toBottomOf="@id/cooking_steps_rv"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"/>
+        <com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTubePlayerView
+            android:id="@+id/youtube_player_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="8dp"
+            android:layout_marginVertical="16dp"
+            app:autoPlay="true"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/cooking_steps_rv"
+            app:videoId="S0Q4gqBUs7c" />
 
 
         <androidx.constraintlayout.widget.Guideline

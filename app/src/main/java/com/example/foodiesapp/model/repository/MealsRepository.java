@@ -50,6 +50,10 @@ public class MealsRepository {
         return remoteSource.getMealDetails(id);
     }
 
+    public Single<Meal> getMealById(String id){
+        return localSource.getMealById(id);
+    }
+
     public Completable addMealToPlan(DatabaseMeal meal){
         return localSource.addMealToPlan(meal);
     }

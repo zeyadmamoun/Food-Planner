@@ -1,18 +1,17 @@
 package com.example.foodiesapp.mealDetails.view;
 
 import android.os.Bundle;
+import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.LinearLayoutManager;
-
-import android.util.Log;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.example.foodiesapp.MealsApplication;
@@ -21,12 +20,17 @@ import com.example.foodiesapp.mealDetails.presenter.MealDetailsPresenter;
 import com.example.foodiesapp.mealDetails.view.adapter.IngredientsDetailAdapter;
 import com.example.foodiesapp.mealDetails.view.adapter.MealStepsAdapter;
 import com.example.foodiesapp.model.meal.Meal;
+import com.google.android.material.datepicker.CalendarConstraints;
+import com.google.android.material.datepicker.DateValidatorPointForward;
+import com.google.android.material.datepicker.MaterialDatePicker;
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.YouTubePlayer;
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.listeners.AbstractYouTubePlayerListener;
 
+import java.util.Calendar;
 import java.util.List;
+import java.util.TimeZone;
 
-public class MealDetailsFragment extends Fragment implements MealDetailsContract{
+public class MealDetailsFragment extends Fragment implements MealDetailsContract {
     MealDetailsFragmentArgs navArgs;
     FragmentMealDetailsBinding binding;
     IngredientsDetailAdapter ingredientsDetailAdapter;
@@ -39,14 +43,14 @@ public class MealDetailsFragment extends Fragment implements MealDetailsContract
         super.onCreate(savedInstanceState);
         navArgs = MealDetailsFragmentArgs.fromBundle(getArguments());
         MealsApplication app = (MealsApplication) getActivity().getApplication();
-        presenter = new MealDetailsPresenter(app.getContainer().getMealsRepository(),this);
+        presenter = new MealDetailsPresenter(app.getContainer().getMealsRepository(), this);
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        binding = FragmentMealDetailsBinding.inflate(inflater,container,false);
+        binding = FragmentMealDetailsBinding.inflate(inflater, container, false);
         return binding.getRoot();
     }
 
@@ -65,8 +69,30 @@ public class MealDetailsFragment extends Fragment implements MealDetailsContract
 
         presenter.getMealDetails(id);
 
-        binding.favoriteButton.setOnClickListener(view1 -> presenter.addMealToFavorites(presenter.getCurrentMeal()));
+        binding.favoriteButtonOutlined.setOnClickListener(view1 -> presenter.onFavoriteButtonClicked());
+        binding.favoriteButtonFilled.setOnClickListener(view1 -> presenter.onFavoriteButtonClicked());
         binding.backButton.setOnClickListener(view1 -> Navigation.findNavController(requireView()).navigateUp());
+        binding.addMealButton.setOnClickListener(view1 -> showDatePicker());
+    }
+
+    private void showDatePicker() {
+        // we decide the constraints of date picker
+        CalendarConstraints constraintsBuilder = new CalendarConstraints.Builder()
+                .setValidator(DateValidatorPointForward.now()).build();
+
+        MaterialDatePicker<Long> datePicker = MaterialDatePicker.Builder.datePicker()
+                .setTitleText("Select date")
+                .setInputMode(MaterialDatePicker.INPUT_MODE_CALENDAR)
+                .setCalendarConstraints(constraintsBuilder)
+                .build();
+
+        datePicker.show(getActivity().getSupportFragmentManager(), "PlanDatePicker");
+        datePicker.addOnPositiveButtonClickListener(selection -> {
+            Calendar calendar = Calendar.getInstance(TimeZone.getTimeZone("UTC"));
+            calendar.setTimeInMillis(selection);
+            String date = calendar.getTime().toString();
+            presenter.addMealToPlan(date);
+        });
     }
 
     @Override
@@ -101,7 +127,6 @@ public class MealDetailsFragment extends Fragment implements MealDetailsContract
     @Override
     public void setupVideo(String videoLink) {
         getLifecycle().addObserver(binding.youtubePlayerView);
-
         binding.youtubePlayerView.addYouTubePlayerListener(new AbstractYouTubePlayerListener() {
             @Override
             public void onReady(@NonNull YouTubePlayer youTubePlayer) {
@@ -112,7 +137,19 @@ public class MealDetailsFragment extends Fragment implements MealDetailsContract
     }
 
     @Override
+    public void updateFavoriteStateToRemoved() {
+        binding.favoriteButtonFilled.setVisibility(View.INVISIBLE);
+        binding.favoriteButtonOutlined.setVisibility(View.VISIBLE);
+    }
+
+    @Override
+    public void updateFavoriteStateToAdded() {
+        binding.favoriteButtonFilled.setVisibility(View.VISIBLE);
+        binding.favoriteButtonOutlined.setVisibility(View.INVISIBLE);
+    }
+
+    @Override
     public void showToast(String msg) {
-        Toast.makeText(getActivity(),msg,Toast.LENGTH_SHORT).show();
+        Toast.makeText(getActivity(), msg, Toast.LENGTH_SHORT).show();
     }
 }

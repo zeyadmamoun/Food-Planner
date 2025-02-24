@@ -13,6 +13,7 @@ import java.util.List;
 
 import io.reactivex.rxjava3.core.Completable;
 import io.reactivex.rxjava3.core.Flowable;
+import io.reactivex.rxjava3.core.Single;
 
 @Dao
 public interface MealsDao {
@@ -21,7 +22,7 @@ public interface MealsDao {
     @Query("Select * from favorites")
     Flowable<List<Meal>> getFavoriteMeals();
     @Query("Select * from favorites where idMeal = :id")
-    Flowable<Meal> getMealById(String id);
+    Single<Meal> getMealById(String id);
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     Completable addMealToFavorites(Meal meal);
     @Insert(onConflict = OnConflictStrategy.IGNORE)

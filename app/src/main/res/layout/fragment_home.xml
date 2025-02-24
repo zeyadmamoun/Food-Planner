@@ -19,6 +19,7 @@
             android:layout_marginStart="16dp"
             android:layout_marginTop="16dp"
             android:text="@string/welcome"
+            android:textColor="@color/primary"
             android:textSize="16sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -30,6 +31,7 @@
             android:layout_height="wrap_content"
             android:text="@string/user"
             android:textSize="16sp"
+            android:textColor="@color/primary"
             app:layout_constraintStart_toEndOf="@+id/welcome_tv"
             app:layout_constraintTop_toTopOf="@+id/welcome_tv" />
 
@@ -83,6 +85,19 @@
             android:padding="8dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/recommendations" />
+
+        <ImageView
+            android:id="@+id/imageView"
+            android:padding="4dp"
+            android:layout_width="50dp"
+            android:layout_height="0dp"
+            android:layout_marginEnd="16dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/account_circle_ic"
+            app:layout_constraintBottom_toBottomOf="@+id/below_username_tv"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/welcome_tv"
+            tools:srcCompat="@drawable/account_circle_ic" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

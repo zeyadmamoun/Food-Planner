@@ -4,6 +4,8 @@ import android.annotation.SuppressLint;
 import android.util.Log;
 
 import com.example.foodiesapp.home.view.HomeContract;
+import com.example.foodiesapp.model.meal.DatabaseMeal;
+import com.example.foodiesapp.model.meal.Meal;
 import com.example.foodiesapp.model.meal.MealsListResponse;
 import com.example.foodiesapp.model.repository.MealsRepository;
 import com.google.firebase.auth.FirebaseAuth;
@@ -29,6 +31,18 @@ public class HomePresenter {
             return mAuth.getCurrentUser().getDisplayName();
         }
         return "User";
+    }
+
+    @SuppressLint("CheckResult")
+    public void addMealToPlan(Meal currentMeal, String date) {
+        if (currentMeal != null){
+            DatabaseMeal meal = new DatabaseMeal(currentMeal,date);
+            repository.addMealToPlan(meal).subscribeOn(Schedulers.io())
+                    .observeOn(AndroidSchedulers.mainThread())
+                    .subscribe(
+                            () -> contract.showToast("meal is now added to your plan")
+                    );
+        }
     }
 
     @SuppressLint("CheckResult")

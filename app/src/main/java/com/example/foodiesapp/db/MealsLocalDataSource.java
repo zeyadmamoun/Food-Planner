@@ -9,6 +9,7 @@ import java.util.List;
 
 import io.reactivex.rxjava3.core.Completable;
 import io.reactivex.rxjava3.core.Flowable;
+import io.reactivex.rxjava3.core.Single;
 
 public class MealsLocalDataSource {
 
@@ -35,7 +36,7 @@ public class MealsLocalDataSource {
         return mealsDao.getFavoriteMeals();
     }
 
-    public Flowable<Meal> getMealById(String id){
+    public Single<Meal> getMealById(String id){
         return mealsDao.getMealById(id);
     }
 
