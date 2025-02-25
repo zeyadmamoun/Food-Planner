@@ -57,6 +57,8 @@ dependencies {
     implementation(libs.firebase.auth)
     // firebase pre-built UI
     implementation(libs.firebaseui.firebase.ui.auth)
+    // firebase firestore
+    implementation(libs.firebase.firestore)
 
     // Retrofit
     implementation (libs.retrofit)

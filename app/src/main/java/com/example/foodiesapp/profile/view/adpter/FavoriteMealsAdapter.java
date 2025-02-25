@@ -1,4 +1,4 @@
-package com.example.foodiesapp.plan.view.adapters;
+package com.example.foodiesapp.profile.view.adpter;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -14,68 +14,61 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.example.foodiesapp.R;
-import com.example.foodiesapp.model.meal.DatabaseMeal;
-import com.example.foodiesapp.plan.view.PlanContract;
+import com.example.foodiesapp.model.meal.Meal;
+import com.example.foodiesapp.profile.view.FavoriteContract;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class PlanMealsAdapter extends RecyclerView.Adapter<PlanMealViewHolder> {
-
+public class FavoriteMealsAdapter extends RecyclerView.Adapter<FavoriteMealViewHolder> {
     Context context;
-    PlanContract contract;
-    List<DatabaseMeal> mealsList;
+    FavoriteContract contract;
+    List<Meal> favoriteMeals = new ArrayList<>();
 
-    public PlanMealsAdapter(Context context, PlanContract contract) {
+    public FavoriteMealsAdapter(Context context, FavoriteContract contract) {
         this.context = context;
         this.contract = contract;
-        mealsList = new ArrayList<>();
     }
 
-    public void setList(List<DatabaseMeal> newList) {
-        mealsList.clear();
-        mealsList.addAll(newList);
+    public void setList(List<Meal> meals){
+        favoriteMeals.clear();
+        favoriteMeals.addAll(meals);
     }
 
     @NonNull
     @Override
-    public PlanMealViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public FavoriteMealViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater inflater = LayoutInflater.from(context);
         View view = inflater.inflate(R.layout.plan_meal_card, parent, false);
-        return new PlanMealViewHolder(view);
+        return new FavoriteMealViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull PlanMealViewHolder holder, int position) {
-        DatabaseMeal meal = mealsList.get(position);
+    public void onBindViewHolder(@NonNull FavoriteMealViewHolder holder, int position) {
+        Meal meal = favoriteMeals.get(position);
         holder.mealName.setText(meal.getStrMeal());
         holder.mealOrigin.setText(meal.getStrArea());
         // loading image
         Glide.with(context).load(meal.getStrMealThumb()).into(holder.mealImage);
 
-        holder.card.setOnClickListener(view -> {
-            contract.navigateToMealDetail(meal.getIdMeal());
-        });
-
-        holder.removeBtn.setOnClickListener(view -> {
-            contract.removeMeal(meal);
-        });
+        holder.card.setOnClickListener(view -> contract.navigateToMealDetail(meal.getIdMeal()));
+        holder.removeBtn.setOnClickListener(view -> contract.removeMealFromFavorite(meal));
     }
 
     @Override
     public int getItemCount() {
-        return mealsList.size();
+        return favoriteMeals.size();
     }
 }
 
-class PlanMealViewHolder extends RecyclerView.ViewHolder {
+class FavoriteMealViewHolder extends RecyclerView.ViewHolder{
     CardView card;
     ImageView mealImage;
     TextView mealName;
     TextView mealOrigin;
     Button removeBtn;
 
-    public PlanMealViewHolder(@NonNull View itemView) {
+    public FavoriteMealViewHolder(@NonNull View itemView) {
         super(itemView);
         card = itemView.findViewById(R.id.meal_card);
         mealImage = itemView.findViewById(R.id.meal_image);
@@ -84,4 +77,3 @@ class PlanMealViewHolder extends RecyclerView.ViewHolder {
         removeBtn = itemView.findViewById(R.id.remove_btn);
     }
 }
-

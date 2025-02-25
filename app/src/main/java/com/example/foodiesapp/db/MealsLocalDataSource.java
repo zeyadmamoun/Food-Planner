@@ -36,6 +36,10 @@ public class MealsLocalDataSource {
         return mealsDao.getFavoriteMeals();
     }
 
+    public Flowable<List<DatabaseMeal>> getAllPlanMeals(){
+        return mealsDao.getAllPlanMeals();
+    }
+
     public Single<Meal> getMealById(String id){
         return mealsDao.getMealById(id);
     }

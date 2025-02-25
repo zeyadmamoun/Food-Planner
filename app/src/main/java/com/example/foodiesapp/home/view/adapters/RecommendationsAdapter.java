@@ -53,9 +53,7 @@ public class RecommendationsAdapter extends RecyclerView.Adapter<MealCardViewHol
         // loading image
         Glide.with(context).load(meal.getStrMealThumb()).into(holder.mealImage);
 
-        holder.card.setOnClickListener(view -> {
-            contract.showToast("card clicked");
-        });
+        holder.card.setOnClickListener(view -> contract.onCardClicked(meal.getIdMeal()));
     }
 
     @Override

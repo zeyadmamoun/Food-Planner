@@ -52,4 +52,9 @@
     <string name="cooking_steps">Cooking steps</string>
     <string name="your_weekly_plan">Your Weekly Plan</string>
     <string name="no_meals_added_this_day">No Meals Added this day</string>
+    <string name="remove">Remove</string>
+    <string name="backup_my_plans">Backup my plans</string>
+    <string name="my_favorites">My favorites</string>
+    <string name="your_favorite_meals">Your favorite meals</string>
+    <string name="retrieve_backup">Retrieve Backup</string>
 </resources>

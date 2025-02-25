@@ -24,12 +24,18 @@ public class MainActivity extends AppCompatActivity {
                 findFragmentById(R.id.nav_host_fragment);
 
         navController = navHostFragment.getNavController();
-        NavigationUI.setupWithNavController(bottomNavigationView,navController);
+        NavigationUI.setupWithNavController(bottomNavigationView, navController);
 
         navController.addOnDestinationChangedListener((navController1, navDestination, bundle) -> {
-            if (navDestination.getId() == R.id.loginFragment){
+            if (navDestination.getId() == R.id.loginFragment) {
                 bottomNavigationView.setVisibility(View.INVISIBLE);
-            } else if(navDestination.getId() == R.id.registrationFragment){
+            } else if (navDestination.getId() == R.id.registrationFragment) {
+                bottomNavigationView.setVisibility(View.INVISIBLE);
+            } else if (navDestination.getId() == R.id.resultsFragment) {
+                bottomNavigationView.setVisibility(View.INVISIBLE);
+            } else if (navDestination.getId() == R.id.mealDetailsFragment) {
+                bottomNavigationView.setVisibility(View.INVISIBLE);
+            } else if (navDestination.getId() == R.id.favoritesFragment) {
                 bottomNavigationView.setVisibility(View.INVISIBLE);
             } else {
                 bottomNavigationView.setVisibility(View.VISIBLE);
@@ -39,7 +45,7 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        if (navController.getCurrentDestination().getId() == R.id.loginFragment){
+        if (navController.getCurrentDestination().getId() == R.id.loginFragment) {
             this.finish();
         } else {
             super.onBackPressed();

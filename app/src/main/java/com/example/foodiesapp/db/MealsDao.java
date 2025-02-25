@@ -17,6 +17,8 @@ import io.reactivex.rxjava3.core.Single;
 
 @Dao
 public interface MealsDao {
+    @Query("Select * from meals_plan")
+    Flowable<List<DatabaseMeal>>getAllPlanMeals();
     @Query("Select * From meals_plan where mealDate = :Date")
     Flowable<List<DatabaseMeal>>getMealsByDate(String Date);
     @Query("Select * from favorites")

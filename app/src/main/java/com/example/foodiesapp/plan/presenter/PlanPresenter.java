@@ -2,6 +2,7 @@ package com.example.foodiesapp.plan.presenter;
 
 import android.annotation.SuppressLint;
 
+import com.example.foodiesapp.model.meal.DatabaseMeal;
 import com.example.foodiesapp.model.repository.MealsRepository;
 import com.example.foodiesapp.plan.view.PlanContract;
 
@@ -30,6 +31,15 @@ public class PlanPresenter {
                             }
                         },
                         throwable ->  contract.showToast(throwable.toString())
+                );
+    }
+
+    @SuppressLint("CheckResult")
+    public void removeMealFromPlan(DatabaseMeal meal){
+        repository.removeMealFromPlan(meal).subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(
+                        () -> contract.showToast("Removed from plan")
                 );
     }
 }

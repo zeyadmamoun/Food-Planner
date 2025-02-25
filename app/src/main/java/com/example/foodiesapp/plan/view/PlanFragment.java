@@ -5,6 +5,8 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.navigation.NavDirections;
+import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import android.view.LayoutInflater;
@@ -73,6 +75,18 @@ public class PlanFragment extends Fragment implements PlanContract {
     public void showEmptyListIcon() {
         binding.planMealsRv.setVisibility(View.INVISIBLE);
         binding.emptyPlanLl.setVisibility(View.VISIBLE);
+    }
+
+    @Override
+    public void navigateToMealDetail(String id) {
+        NavDirections action = PlanFragmentDirections
+                .actionPlanFragmentToMealDetailsFragment(id);
+        Navigation.findNavController(requireView()).navigate(action);
+    }
+
+    @Override
+    public void removeMeal(DatabaseMeal meal) {
+        presenter.removeMealFromPlan(meal);
     }
 
     @Override

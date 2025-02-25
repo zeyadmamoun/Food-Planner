@@ -52,10 +52,8 @@ public class InspireMealsAdapter extends RecyclerView.Adapter<InspireMealViewHol
         holder.mealOrigin.setText(meal.getStrArea());
         // loading image
         Glide.with(context).load(meal.getStrMealThumb()).into(holder.mealImage);
-
-        holder.addBtn.setOnClickListener(view -> {
-            contract.onAddToPlanClicked(meal);
-        });
+        holder.mealCard.setOnClickListener(view -> contract.onCardClicked(meal.getIdMeal()));
+        holder.addBtn.setOnClickListener(view -> contract.onAddToPlanClicked(meal));
     }
 
     @Override

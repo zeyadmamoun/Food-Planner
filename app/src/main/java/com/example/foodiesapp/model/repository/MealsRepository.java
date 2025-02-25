@@ -70,6 +70,10 @@ public class MealsRepository {
         return localSource.getFavoriteMeals();
     }
 
+    public Flowable<List<DatabaseMeal>> getAllPlanMeals(){
+        return localSource.getAllPlanMeals();
+    }
+
     public Completable removeMealFromFavorites(Meal meal){
         return localSource.removeMealFromFavorites(meal);
     }

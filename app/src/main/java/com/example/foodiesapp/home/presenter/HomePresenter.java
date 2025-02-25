@@ -1,6 +1,7 @@
 package com.example.foodiesapp.home.presenter;
 
 import android.annotation.SuppressLint;
+import android.net.Uri;
 import android.util.Log;
 
 import com.example.foodiesapp.home.view.HomeContract;
@@ -9,6 +10,9 @@ import com.example.foodiesapp.model.meal.Meal;
 import com.example.foodiesapp.model.meal.MealsListResponse;
 import com.example.foodiesapp.model.repository.MealsRepository;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+
+import java.net.URL;
 
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
 import io.reactivex.rxjava3.schedulers.Schedulers;
@@ -31,6 +35,17 @@ public class HomePresenter {
             return mAuth.getCurrentUser().getDisplayName();
         }
         return "User";
+    }
+
+    public String getUserAvatar() {
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        Uri profileImageUrl = user != null ? user.getPhotoUrl() : null;
+
+        if (profileImageUrl != null) {
+            return profileImageUrl.toString();
+        } else {
+            return null;
+        }
     }
 
     @SuppressLint("CheckResult")

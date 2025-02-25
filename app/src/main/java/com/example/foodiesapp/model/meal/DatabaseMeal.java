@@ -6,7 +6,6 @@ import androidx.room.PrimaryKey;
 
 @Entity(tableName = "meals_plan")
 public class DatabaseMeal {
-
     @PrimaryKey
     @NonNull
     private String idMeal;
