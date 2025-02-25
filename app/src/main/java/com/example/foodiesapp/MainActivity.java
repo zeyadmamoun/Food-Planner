@@ -1,5 +1,6 @@
 package com.example.foodiesapp;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.view.View;
 
@@ -9,6 +10,7 @@ import androidx.navigation.fragment.NavHostFragment;
 import androidx.navigation.ui.NavigationUI;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 
 public class MainActivity extends AppCompatActivity {
     BottomNavigationView bottomNavigationView;
@@ -37,10 +39,27 @@ public class MainActivity extends AppCompatActivity {
                 bottomNavigationView.setVisibility(View.INVISIBLE);
             } else if (navDestination.getId() == R.id.favoritesFragment) {
                 bottomNavigationView.setVisibility(View.INVISIBLE);
+            } else if (navDestination.getId() == R.id.planFragment) {
+                MealsApplication app = (MealsApplication) this.getApplication();
+                if (app.getGuestModeOn()) {
+                    showDialog(navController, R.id.loginFragment, this);
+                    navController.navigate(R.id.homeFragment);
+                }
             } else {
                 bottomNavigationView.setVisibility(View.VISIBLE);
             }
         });
+    }
+
+    public static void showDialog(NavController controller, int id, Context context) {
+        new MaterialAlertDialogBuilder(context)
+                .setTitle("you are not authenticated")
+                .setMessage("this feature require to login, Do you wanna login?")
+                .setNegativeButton("cancel", (dialogInterface, i) -> {
+                    dialogInterface.cancel();
+                }).setPositiveButton("Sign in", (dialogInterface, i) -> {
+                    controller.navigate(id);
+                }).show();
     }
 
     @Override

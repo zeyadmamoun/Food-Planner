@@ -66,7 +66,8 @@ public class ProfilePresenter {
                 .flatMapIterable(databaseMeals -> databaseMeals)
                 .subscribe(
                         this::uploadUserPlanToDatabase,
-                        throwable -> Log.i(TAG, "getUserPlanAndBackItUp: " + throwable)
+                        throwable -> Log.i(TAG, "getUserPlanAndBackItUp: " + throwable),
+                        () -> contract.showToast("plan backup success")
                 );
     }
     @SuppressLint("CheckResult")
@@ -76,7 +77,8 @@ public class ProfilePresenter {
                 .flatMapIterable(meals -> meals)
                 .subscribe(
                         this::uploadUserFavoritesToDatabase,
-                        throwable -> Log.i(TAG, "getUserPlanAndBackItUp: " + throwable)
+                        throwable -> Log.i(TAG, "getUserPlanAndBackItUp: " + throwable),
+                        () -> contract.showToast("favorite backup success")
                 );
     }
 
@@ -109,7 +111,6 @@ public class ProfilePresenter {
                 .collection("planMeals")
                 .add(mealMap)
                 .addOnSuccessListener(documentReference -> {
-                    contract.showToast("backup operation done successfully");
                     Log.i(TAG, "onSuccess: " + documentReference);
                 })
                 .addOnFailureListener(e -> Log.i(TAG, "onFailure: " + e.getMessage()));
@@ -142,12 +143,11 @@ public class ProfilePresenter {
                 .collection("favoriteMeals")
                 .add(mealMap)
                 .addOnSuccessListener(documentReference -> {
-                    contract.showToast("backup operation done successfully");
                     Log.i(TAG, "onSuccess: " + documentReference);
                 })
                 .addOnFailureListener(e -> Log.i(TAG, "onFailure: " + e.getMessage()));
     }
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////these function are specific to restore user backup //////////////////////////////////////
 
     public void getFavoritesFromFirestore(){
         String userId = mAuth.getCurrentUser().getUid();
@@ -158,7 +158,9 @@ public class ProfilePresenter {
                     if (task.isSuccessful()) {
                         for (QueryDocumentSnapshot document : task.getResult()) {
                             Log.d(TAG, document.getId() + " => " + document.getData());
+                            addMealToFavorites(parseMeal(document.getData()));
                         }
+                        contract.showToast("your favorites is restored successfully");
                     } else {
                         Log.w(TAG, "Error getting documents.", task.getException());
                     }
@@ -174,7 +176,9 @@ public class ProfilePresenter {
                     if (task.isSuccessful()) {
                         for (QueryDocumentSnapshot document : task.getResult()) {
                             Log.d(TAG, document.getId() + " => " + document.getData());
+                            addMealToPlan(parseMeal(document.getData()),(String) document.getData().get("mealDate"));
                         }
+                        contract.showToast("your plan is restored successfully");
                     } else {
                         Log.w(TAG, "Error getting documents.", task.getException());
                     }
@@ -196,5 +200,37 @@ public class ProfilePresenter {
         repository.addMealToFavorite(meal).subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe();
+    }
+
+    public Meal parseMeal(Map<String, Object> data) {
+        return new Meal(
+                (String) data.get("idMeal"),
+                (String) data.get("strMeal"),
+                (String) data.get("strCategory"),
+                (String) data.get("strArea"),
+                (String) data.get("strInstructions"),
+                (String) data.get("strMealThumb"),
+                (String) data.get("strYoutube"),
+                (String) data.get("strIngredient1"),
+                (String) data.get("strIngredient2"),
+                (String) data.get("strIngredient3"),
+                (String) data.get("strIngredient4"),
+                (String) data.get("strIngredient5"),
+                (String) data.get("strIngredient6"),
+                (String) data.get("strIngredient7"),
+                (String) data.get("strIngredient8"),
+                (String) data.get("strIngredient9"),
+                (String) data.get("strIngredient10"),
+                (String) data.get("strIngredient11"),
+                (String) data.get("strIngredient12"),
+                (String) data.get("strIngredient13"),
+                (String) data.get("strIngredient14"),
+                (String) data.get("strIngredient15"),
+                (String) data.get("strIngredient16"),
+                (String) data.get("strIngredient17"),
+                (String) data.get("strIngredient18"),
+                (String) data.get("strIngredient19"),
+                (String) data.get("strIngredient20")
+        );
     }
 }

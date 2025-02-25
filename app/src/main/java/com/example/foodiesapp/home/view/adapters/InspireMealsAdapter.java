@@ -13,6 +13,7 @@ import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.example.foodiesapp.MealsApplication;
 import com.example.foodiesapp.R;
 import com.example.foodiesapp.home.view.HomeContract;
 import com.example.foodiesapp.model.meal.Meal;

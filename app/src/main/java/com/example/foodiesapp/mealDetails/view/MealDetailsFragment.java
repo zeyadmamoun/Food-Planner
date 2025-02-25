@@ -14,7 +14,9 @@ import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.bumptech.glide.Glide;
+import com.example.foodiesapp.MainActivity;
 import com.example.foodiesapp.MealsApplication;
+import com.example.foodiesapp.R;
 import com.example.foodiesapp.databinding.FragmentMealDetailsBinding;
 import com.example.foodiesapp.mealDetails.presenter.MealDetailsPresenter;
 import com.example.foodiesapp.mealDetails.view.adapter.IngredientsDetailAdapter;
@@ -69,10 +71,31 @@ public class MealDetailsFragment extends Fragment implements MealDetailsContract
 
         presenter.getMealDetails(id);
 
-        binding.favoriteButtonOutlined.setOnClickListener(view1 -> presenter.onFavoriteButtonClicked());
-        binding.favoriteButtonFilled.setOnClickListener(view1 -> presenter.onFavoriteButtonClicked());
+        binding.favoriteButtonOutlined.setOnClickListener(view1 -> {
+            MealsApplication app = (MealsApplication) getActivity().getApplication();
+            if (app.getGuestModeOn()){
+                MainActivity.showDialog(Navigation.findNavController(requireView()), R.id.loginFragment,getActivity());
+                return;
+            }
+            presenter.onFavoriteButtonClicked();
+        });
+        binding.favoriteButtonFilled.setOnClickListener(view1 -> {
+            MealsApplication app = (MealsApplication) getActivity().getApplication();
+            if (app.getGuestModeOn()){
+                MainActivity.showDialog(Navigation.findNavController(requireView()), R.id.loginFragment,getActivity());
+                return;
+            }
+            presenter.onFavoriteButtonClicked();
+        });
         binding.backButton.setOnClickListener(view1 -> Navigation.findNavController(requireView()).navigateUp());
-        binding.addMealButton.setOnClickListener(view1 -> showDatePicker());
+        binding.addMealButton.setOnClickListener(view1 -> {
+            MealsApplication app = (MealsApplication) getActivity().getApplication();
+            if (app.getGuestModeOn()){
+                MainActivity.showDialog(Navigation.findNavController(requireView()), R.id.loginFragment,getActivity());
+                return;
+            }
+            showDatePicker();
+        });
     }
 
     private void showDatePicker() {
@@ -126,6 +149,10 @@ public class MealDetailsFragment extends Fragment implements MealDetailsContract
 
     @Override
     public void setupVideo(String videoLink) {
+        if (videoLink == null){
+            binding.youtubePlayerView.setVisibility(View.INVISIBLE);
+            return;
+        }
         getLifecycle().addObserver(binding.youtubePlayerView);
         binding.youtubePlayerView.addYouTubePlayerListener(new AbstractYouTubePlayerListener() {
             @Override

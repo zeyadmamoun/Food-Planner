@@ -57,4 +57,5 @@
     <string name="my_favorites">My favorites</string>
     <string name="your_favorite_meals">Your favorite meals</string>
     <string name="retrieve_backup">Retrieve Backup</string>
+    <string name="about_dialog">Got it</string>
 </resources>

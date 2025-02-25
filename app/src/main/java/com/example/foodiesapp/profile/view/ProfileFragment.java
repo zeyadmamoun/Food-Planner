@@ -14,9 +14,12 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.example.foodiesapp.MainActivity;
 import com.example.foodiesapp.MealsApplication;
+import com.example.foodiesapp.R;
 import com.example.foodiesapp.databinding.FragmentProfileBinding;
 import com.example.foodiesapp.profile.presenter.ProfilePresenter;
+import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.firebase.auth.FirebaseAuth;
 
 public class ProfileFragment extends Fragment implements ProfileContract{
@@ -50,26 +53,50 @@ public class ProfileFragment extends Fragment implements ProfileContract{
         binding.userEmailTv.setText(presenter.getUserEmail());
 
         binding.backupDataLl.setOnClickListener(view1 -> {
+            MealsApplication app = (MealsApplication) getActivity().getApplication();
+            if (app.getGuestModeOn()){
+                MainActivity.showDialog(Navigation.findNavController(requireView()), R.id.loginFragment,getActivity());
+                return;
+            }
             presenter.getUserPlanAndBackItUp();
             presenter.getUserFavouritesAndBackItUp();
         });
 
         binding.getBackupLl.setOnClickListener(view1 -> {
+            MealsApplication app = (MealsApplication) getActivity().getApplication();
+            if (app.getGuestModeOn()){
+                MainActivity.showDialog(Navigation.findNavController(requireView()), R.id.loginFragment,getActivity());
+                return;
+            }
             presenter.getFavoritesFromFirestore();
             presenter.getPlanMealsFromFirestore();
         });
 
         binding.favoritesLl.setOnClickListener(view1 -> {
+            MealsApplication app = (MealsApplication) getActivity().getApplication();
+            if (app.getGuestModeOn()){
+                MainActivity.showDialog(Navigation.findNavController(requireView()),R.id.loginFragment,getActivity());
+                return;
+            }
             NavDirections action = ProfileFragmentDirections.actionProfileFragmentToFavoritesFragment();
             Navigation.findNavController(requireView()).navigate(action);
+        });
+
+        binding.aboutLl.setOnClickListener(view1 -> {
+            new MaterialAlertDialogBuilder(getActivity())
+                    .setTitle("Foodies App")
+                    .setMessage("Made by: Zeyad Maamoun")
+                    .setNeutralButton(R.string.about_dialog,(dialogInterface, i) -> {
+                        dialogInterface.cancel();
+                    }).show();
         });
 
         binding.signOutLl.setOnClickListener(view1 -> {
             if (mAuth.getCurrentUser()!= null){
                 mAuth.signOut();
-                NavDirections action = ProfileFragmentDirections.actionProfileFragmentToLoginFragment();
-                Navigation.findNavController(requireView()).navigate(action);
             }
+            NavDirections action = ProfileFragmentDirections.actionProfileFragmentToLoginFragment();
+            Navigation.findNavController(requireView()).navigate(action);
         });
     }
 

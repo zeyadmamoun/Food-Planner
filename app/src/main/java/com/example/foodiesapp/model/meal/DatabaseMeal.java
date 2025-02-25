@@ -2,13 +2,12 @@ package com.example.foodiesapp.model.meal;
 
 import androidx.annotation.NonNull;
 import androidx.room.Entity;
-import androidx.room.PrimaryKey;
 
-@Entity(tableName = "meals_plan")
+@Entity(tableName = "meals_plan",primaryKeys = {"idMeal", "mealDate"})
 public class DatabaseMeal {
-    @PrimaryKey
     @NonNull
     private String idMeal;
+    @NonNull
     private String mealDate;
     private String strMeal;
     private String strCategory;

@@ -15,7 +15,9 @@ import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.bumptech.glide.Glide;
+import com.example.foodiesapp.MainActivity;
 import com.example.foodiesapp.MealsApplication;
+import com.example.foodiesapp.R;
 import com.example.foodiesapp.databinding.FragmentHomeBinding;
 import com.example.foodiesapp.home.presenter.HomePresenter;
 import com.example.foodiesapp.home.view.adapters.InspireMealsAdapter;
@@ -45,6 +47,9 @@ public class HomeFragment extends Fragment implements HomeContract {
         MealsApplication app = (MealsApplication) requireActivity().getApplication();
         MealsRepository repo = app.getContainer().getMealsRepository();
         presenter = new HomePresenter(repo, this);
+        if (presenter.getmAuth().getCurrentUser() != null){
+            app.setGuestModeOn(false);
+        }
     }
 
     @Override
@@ -59,7 +64,7 @@ public class HomeFragment extends Fragment implements HomeContract {
         super.onViewCreated(view, savedInstanceState);
         binding.usernameTv.setText(String.valueOf(presenter.getUsername()));
         String imageUri = presenter.getUserAvatar();
-        if (imageUri != null ){
+        if (imageUri != null) {
             Glide.with(requireView()).load(presenter.getUserAvatar()).into(binding.imageView);
         }
 
@@ -120,6 +125,11 @@ public class HomeFragment extends Fragment implements HomeContract {
 
     @Override
     public void onAddToPlanClicked(Meal meal) {
+        MealsApplication app = (MealsApplication) getActivity().getApplication();
+        if (app.getGuestModeOn()){
+            MainActivity.showDialog(Navigation.findNavController(requireView()),R.id.loginFragment,getActivity());
+            return;
+        }
         showDatePicker(meal);
     }
 

@@ -15,6 +15,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
+import com.example.foodiesapp.MealsApplication;
 import com.example.foodiesapp.databinding.FragmentLoginBinding;
 import com.firebase.ui.auth.AuthUI;
 import com.firebase.ui.auth.FirebaseAuthUIActivityResultContract;
@@ -67,6 +68,8 @@ public class LoginFragment extends Fragment implements LoginContract {
         });
 
         binding.guestModeBtn.setOnClickListener(view3 -> {
+            MealsApplication app = (MealsApplication) getActivity().getApplication();
+            app.setGuestModeOn(true);
             NavDirections action = LoginFragmentDirections.actionLoginFragmentToHomeFragment();
             Navigation.findNavController(requireView()).navigate(action);
         });

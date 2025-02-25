@@ -9,7 +9,7 @@ import androidx.room.RoomDatabase;
 import com.example.foodiesapp.model.meal.DatabaseMeal;
 import com.example.foodiesapp.model.meal.Meal;
 
-@Database(entities = {Meal.class, DatabaseMeal.class},version = 1)
+@Database(entities = {Meal.class, DatabaseMeal.class},version = 2)
 abstract public class MealsDatabase extends RoomDatabase {
     private static MealsDatabase instance = null;
     public abstract MealsDao mealsDao();
@@ -17,6 +17,7 @@ abstract public class MealsDatabase extends RoomDatabase {
     public static MealsDatabase getInstance(Context context){
         if (instance == null){
             instance = Room.databaseBuilder(context.getApplicationContext(),MealsDatabase.class,"mealsdb")
+                    .fallbackToDestructiveMigration()
                     .build();
         }
         return instance;

@@ -12,8 +12,6 @@ import com.example.foodiesapp.model.repository.MealsRepository;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
-import java.net.URL;
-
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
 import io.reactivex.rxjava3.schedulers.Schedulers;
 
@@ -21,6 +19,7 @@ public class HomePresenter {
     MealsRepository repository;
     HomeContract contract;
     private final FirebaseAuth mAuth;
+
     public static final String TAG = "HomePresenter";
 
     public HomePresenter(MealsRepository repository, HomeContract contract) {
@@ -46,6 +45,10 @@ public class HomePresenter {
         } else {
             return null;
         }
+    }
+
+    public FirebaseAuth getmAuth() {
+        return mAuth;
     }
 
     @SuppressLint("CheckResult")
