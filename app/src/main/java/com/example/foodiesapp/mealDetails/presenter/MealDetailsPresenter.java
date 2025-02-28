@@ -9,7 +9,6 @@ import com.example.foodiesapp.model.meal.Meal;
 import com.example.foodiesapp.model.repository.MealsRepository;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -28,10 +27,6 @@ public class MealDetailsPresenter {
         this.contract = contract;
     }
 
-//    public Meal getCurrentMeal() {
-//        return currentMeal;
-//    }
-
     @SuppressLint("CheckResult")
     public void getMealDetails(String id) {
         repository.getMealDetails(id).subscribeOn(Schedulers.io())
@@ -41,11 +36,8 @@ public class MealDetailsPresenter {
                         meal -> {
                             currentMeal = meal;
                             List<String> ingredients = createIngredientList(meal);
-                            String[] arr = meal.getStrInstructions().split("[.]");
-                            List<String> steps = new ArrayList<>(Arrays.asList(arr));
                             contract.updateUI(meal);
                             contract.assignIngredientsRecyclerView(ingredients);
-                            contract.assignStepsRecyclerView(steps);
                             contract.setupVideo(extractYouTubeVideoId(meal.getStrYoutube()));
                         },
                         throwable -> Log.i(TAG, throwable.toString())

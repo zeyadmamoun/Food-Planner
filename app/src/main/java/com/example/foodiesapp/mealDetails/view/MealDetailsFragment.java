@@ -20,7 +20,6 @@ import com.example.foodiesapp.R;
 import com.example.foodiesapp.databinding.FragmentMealDetailsBinding;
 import com.example.foodiesapp.mealDetails.presenter.MealDetailsPresenter;
 import com.example.foodiesapp.mealDetails.view.adapter.IngredientsDetailAdapter;
-import com.example.foodiesapp.mealDetails.view.adapter.MealStepsAdapter;
 import com.example.foodiesapp.model.meal.Meal;
 import com.google.android.material.datepicker.CalendarConstraints;
 import com.google.android.material.datepicker.DateValidatorPointForward;
@@ -36,7 +35,6 @@ public class MealDetailsFragment extends Fragment implements MealDetailsContract
     MealDetailsFragmentArgs navArgs;
     FragmentMealDetailsBinding binding;
     IngredientsDetailAdapter ingredientsDetailAdapter;
-    MealStepsAdapter mealStepsAdapter;
     MealDetailsPresenter presenter;
     private static final String TAG = "MealDetailsFragment";
 
@@ -64,10 +62,6 @@ public class MealDetailsFragment extends Fragment implements MealDetailsContract
         ingredientsDetailAdapter = new IngredientsDetailAdapter(getActivity());
         binding.mealIngredientsRv.setLayoutManager(new LinearLayoutManager(getActivity()));
         binding.mealIngredientsRv.setAdapter(ingredientsDetailAdapter);
-
-        mealStepsAdapter = new MealStepsAdapter(getActivity());
-        binding.cookingStepsRv.setLayoutManager(new LinearLayoutManager(getActivity()));
-        binding.cookingStepsRv.setAdapter(mealStepsAdapter);
 
         presenter.getMealDetails(id);
 
@@ -133,18 +127,12 @@ public class MealDetailsFragment extends Fragment implements MealDetailsContract
     }
 
     @Override
-    public void assignStepsRecyclerView(List<String> steps) {
-        Log.i(TAG, "assignStepsRecyclerView: " + steps.size());
-        mealStepsAdapter.setList(steps);
-        mealStepsAdapter.notifyDataSetChanged();
-    }
-
-    @Override
     public void updateUI(Meal meal) {
         binding.mealName.setText(meal.getStrMeal());
         Glide.with(getActivity()).load(meal.getStrMealThumb()).into(binding.mealImage);
         binding.mealDescription.setText(meal.getStrCategory());
         binding.mealOrigin.setText(meal.getStrArea());
+        binding.tvInstructionContent.setText(meal.getStrInstructions());
     }
 
     @Override
