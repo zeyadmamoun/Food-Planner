@@ -34,7 +34,7 @@ Foodies App is an Android mobile application designed to help users plan their w
 - **Reactive Programming:** RX-Java
 
 ## Technologies Used
-- Kotlin
+- Java
 - Room Database
 - Firebase Authentication
 - Retrofit
