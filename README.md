@@ -29,8 +29,7 @@ Foodies App is an Android mobile application designed to help users plan their w
 - **Offline Access:** View favorites and meal plans without network connectivity.
 
 ## Architecture
-- **MVVM Architecture** for better separation of concerns.
-- **Dependency Injection:** Koin
+- **MVP Architecture** for better separation of concerns.
 - **Reactive Programming:** RX-Java
 
 ## Technologies Used
